@@ -1,6 +1,18 @@
 // src/App.js
 import React, { useState, useRef } from "react";
 import "./App.css";
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import '../node_modules/swiper/swiper-bundle.min.css'
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+
 
 const API_URL =
   "https://xdwvg9no7pefghrn.us-east-1.aws.endpoints.huggingface.cloud";
@@ -166,33 +178,66 @@ function App() {
               Craft Your Comics!
             </h1>
           </header>
+          <div
+            style={{
+              height: "4rem",
+            }}
+          ></div>
           <form onSubmit={(e) => e.preventDefault()}>
-            {comicText.map((text, index) => (
-              <div key={index} className="panel-inputs">
-                {/* <p>{index+1}</p> */}
-                <div className="panel-text">
-                  <textarea
-                    placeholder="Imagine your Image"
-                    style={{ fontFamily: "Bangers", width: "12rem" }}
-                    className="textarea-name"
-                    value={text}
-                    onChange={(e) => handleInputChange(index, e.target.value)}
-                  />
-                </div>
-                <div className="Annotation-text">
-                  <textarea
-                    placeholder="Enter Annotation"
-                    style={{ fontFamily: "Bangers", width: "12rem",}}
-                    className="textarea-anot "
-                    value={annotationPanelText[index]}
-                    onChange={(e) =>
-                      handleAnnotationChange(index, e.target.value)
-                    }
-                  />
-                </div>
-              </div>
-            ))}
-
+            <Swiper comicText={comicText} />
+            <Swiper
+              // install Swiper modules
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={50}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+              onSwiper={(swiper) => console.log(swiper)}
+              onSlideChange={() => console.log("slide change")}
+              style={{ width: "100%" }}
+              effect={"cube"}
+              cubeEffect={{
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+              }}
+            >
+              {/* <div style={{
+        height:"2rem",
+      }}></div> */}
+              {comicText.map((text, index) => (
+                <SwiperSlide key={index} className="panel-inputs">
+                  {/* <p>{index+1}</p> */}
+                  <div className="panel-text">
+                    <textarea
+                      placeholder="Imagine your Image"
+                      style={{ fontFamily: "Bangers", width: "16rem" }}
+                      className="textarea-name"
+                      value={text}
+                      onChange={(e) => handleInputChange(index, e.target.value)}
+                    />
+                  </div>
+                  <div className="Annotation-text">
+                    <textarea
+                      placeholder="Enter Annotation"
+                      style={{ fontFamily: "Bangers", width: "16rem" }}
+                      className="textarea-anot "
+                      value={annotationPanelText[index]}
+                      onChange={(e) =>
+                        handleAnnotationChange(index, e.target.value)
+                      }
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div
+              style={{
+                height: "4rem",
+              }}
+            ></div>
             <div className="buttons">
               <button
                 type="button"

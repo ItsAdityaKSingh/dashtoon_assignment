@@ -328,4 +328,14 @@ label {
   }
   
 }
-
+.left{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.panel-inputs > *{
+   display: flex;
+   margin-bottom: 1rem;
+   justify-content: center;
+   align-items: center;
+}
