@@ -182,7 +182,7 @@ function App() {
                 <div className="Annotation-text">
                   <textarea
                     placeholder="Enter Annotation"
-                    style={{ fontFamily: "Bangers", width: "12rem" }}
+                    style={{ fontFamily: "Bangers", width: "12rem",}}
                     className="textarea-anot "
                     value={annotationPanelText[index]}
                     onChange={(e) =>
