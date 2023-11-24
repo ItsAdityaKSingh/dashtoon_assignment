@@ -163,15 +163,15 @@ function App() {
       <div className="container">
         <div className="left">
           <header>
-            <h1>Craft Your Comics!</h1>
+            <h1 style={{fontFamily:'Alegreya', fontSize:"3rem"}}>Craft Your Comics!</h1>
           </header>
           <form onSubmit={(e) => e.preventDefault()}>
             {comicText.map((text, index) => (
               <div key={index} className="panel-inputs">
-                
+                {/* <p>{index+1}</p> */}
                 <div className="panel-text">
                   <textarea
-                    placeholder="Describe Image"
+                    placeholder="Imagine your Image"
                     style={{ fontFamily: 'Bangers', width:'12rem'}}
                     className="textarea-name"
                     value={text}
@@ -205,7 +205,7 @@ function App() {
                 border: '2px solid black',
                 borderRadius: '5px',
                 cursor: 'pointer',
-                marginRight:16
+                marginRight:16,
               }}>
                 {loading ? "Generating Comic..." : "Create Comic"}
               </button>
@@ -223,7 +223,7 @@ function App() {
                 borderRadius: '5px',
                 cursor: 'pointer',
               }}>
-                Restart
+                Clean Slate
               </button>
             </div>
           </form>

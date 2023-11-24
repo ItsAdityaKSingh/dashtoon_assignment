@@ -1,6 +1,7 @@
 /* src/App.css */
 
 @import url(https://fonts.googleapis.com/css?family=Bangers);
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@600&family=Bangers&display=swap');
 
 body {
   margin: 0;
@@ -127,6 +128,7 @@ body::-webkit-scrollbar-track{
     width:65%;
     background-image: url(Assets/Hero.jpg);
     background-size: cover;
+    background-position: center;
   
 }
 
@@ -147,8 +149,8 @@ header{
 
 h1{
   color: black !important;
-  font-family: 'Bangers';
-  letter-spacing: 3px;
+  font-family: 'Alegreya';
+  /* letter-spacing: 3px; */
 }
 
 .default-text{
@@ -254,6 +256,8 @@ label {
 .download{
     background: #008CBA;
     cursor:'pointer';
+    position: relative;
+    bottom: 0;
 }
 
 .download:hover{
