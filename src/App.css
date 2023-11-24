@@ -1,7 +1,6 @@
 /* src/App.css */
 
-@import url(https://fonts.googleapis.com/css?family=Bangers);
-@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@600&family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@600&family=Bangers&family=Marvel:wght@700&family=Montserrat:wght@700&display=swap');
 
 body {
   margin: 0;
@@ -86,7 +85,7 @@ body::-webkit-scrollbar-track{
   width: 100%;
   height: 100%;
   background-image: url(Assets/comic_bg.jpeg);
-  background-repeat: repeat; /* or repeat-x or repeat-y based on your preference */
+  background-repeat: repeat;
   background-size: cover;
   filter: blur(2.5px);
   z-index: -1;

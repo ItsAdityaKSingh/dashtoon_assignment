@@ -21,7 +21,7 @@ function App() {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
-    // Set canvas dimensions based on the comic display size
+    // Setting canvas dimensions based on the comic display size of devixe
     canvas.width = comicDisplayRef.current.offsetWidth;
     canvas.height = comicDisplayRef.current.offsetHeight;
 
@@ -50,26 +50,25 @@ function App() {
       const imgHeight = img.height;
   
 
-      // Draw the image onto the canvas
+      // Drawing the image onto the canvas
       ctx.drawImage(img, imgX, imgY, imgWidth, imgHeight);
 
-      // Draw the annotation box onto the canvas
-      
+      // Drawing the annotation box onto the canvas
       if (annotationBox) {
         const annotation = annotationBox.querySelector(".annotation").innerText;
         const boxX = imgX + 20;
         const boxY = imgY + annotationBox.offsetTop + 32;
        
-        ctx.fillStyle = "white"; // Set the background color of the annotation box
+        ctx.fillStyle = "white"; 
         ctx.fillRect(boxX, boxY, 230, 30);
 
         ctx.font = "20px Bangers";
-        ctx.fillStyle = "black"; // Set the text color of the annotation
-        ctx.fillText(annotation, boxX + 10, boxY + 25); // Adjust the position as needed
+        ctx.fillStyle = "black"; 
+        ctx.fillText(annotation, boxX + 10, boxY + 25);
       }
     });
 
-    // Convert the canvas content to a data URL and trigger download
+    // Converting the canvas content to a data URL and trigger download
       const dataUrl = canvas.toDataURL("image/png");
       const a = document.createElement("a");
       a.href = dataUrl;
@@ -163,7 +162,9 @@ function App() {
       <div className="container">
         <div className="left">
           <header>
-            <h1 style={{fontFamily:'Alegreya', fontSize:"3rem"}}>Craft Your Comics!</h1>
+            <h1 style={{ fontFamily: "Alegreya", fontSize: "3rem" }}>
+              Craft Your Comics!
+            </h1>
           </header>
           <form onSubmit={(e) => e.preventDefault()}>
             {comicText.map((text, index) => (
@@ -172,7 +173,7 @@ function App() {
                 <div className="panel-text">
                   <textarea
                     placeholder="Imagine your Image"
-                    style={{ fontFamily: 'Bangers', width:'12rem'}}
+                    style={{ fontFamily: "Bangers", width: "12rem" }}
                     className="textarea-name"
                     value={text}
                     onChange={(e) => handleInputChange(index, e.target.value)}
@@ -180,8 +181,8 @@ function App() {
                 </div>
                 <div className="Annotation-text">
                   <textarea
-                    placeholder='Enter Annotation'
-                    style={{ fontFamily: 'Bangers', width:'12rem'}}
+                    placeholder="Enter Annotation"
+                    style={{ fontFamily: "Bangers", width: "12rem" }}
                     className="textarea-anot "
                     value={annotationPanelText[index]}
                     onChange={(e) =>
@@ -193,42 +194,62 @@ function App() {
             ))}
 
             <div className="buttons">
-              <button type="button" onClick={handleSubmit} disabled={loading}
-              style={{
-
-                fontWeight: 600,
-                // width:"1vw",
-                flex: 1,
-                // padding: '10px',
-                background: '#4CAF50',
-                color: 'white',
-                border: '2px solid black',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                marginRight:16,
-              }}>
-                {loading ? "Generating Comic..." : "Create Comic"}
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={loading}
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: "900",
+                  flex: 1,
+                  fontFamily: "Marvel",
+                  background: "#4CAF50",
+                  color: "white",
+                  border: "2px solid black",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  marginRight: 16,
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 16px rgba(0, 0, 0, 0.2)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 8px rgba(0, 0, 0, 0.1)";
+                }}
+              >
+                {loading ? "GENERATING YOUR STORY..." : "CREATE COMIC"}
               </button>
-              <button type="button" onClick={handleGenerateAnotherComic}
-              style={{
-           
-                fontWeight: 600,
-                // width:"1vw",
-                flex: 1,
-                
-                // padding: '10px',
-                background: '#f44336',
-                color: 'white',
-                border: '2px solid black',
-                borderRadius: '5px',
-                cursor: 'pointer',
-              }}>
-                Clean Slate
+              <button
+                type="button"
+                onClick={handleGenerateAnotherComic}
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: "900",
+                  flex: 1,
+                  fontFamily: "Marvel",
+                  background: "#f44336",
+                  color: "white",
+                  border: "2px solid black",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 16px rgba(0, 0, 0, 0.2)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 8px rgba(0, 0, 0, 0.1)";
+                }}
+              >
+                CLEAN SLATE
               </button>
             </div>
           </form>
         </div>
-        <div style={{width:20}}></div>
+        <div style={{ width: 20 }}></div>
         {/* {loading && <div className="loader"></div>} */}
         <div className="right" ref={comicDisplayRef}>
           <div className="comic-display">
@@ -239,7 +260,7 @@ function App() {
                     {panel.imageUrl ? (
                       <img
                         style={{
-                          border:"5px solid black",
+                          border: "5px solid black",
                         }}
                         src={panel.imageUrl}
                         alt={`Create more ${index + 1}`}
@@ -248,8 +269,9 @@ function App() {
                     ) : (
                       <div></div>
                     )}
-                    {panel.annotation!=="" && panel.annotation !==
-                    "Write some text instead of generating an image." ? (
+                    {panel.annotation !== "" &&
+                    panel.annotation !==
+                      "Write some text instead of generating an image." ? (
                       <div className="box box1">
                         <div className="annotation">{panel.annotation}</div>
                       </div>
@@ -260,11 +282,27 @@ function App() {
                 )
             )}
           </div>
-          <button className="download" onClick={handleDownloadComic}
-          >Download Comic</button>
+          <button
+            className="download"
+            onClick={handleDownloadComic}
+            style={{
+              fontSize: "1rem",
+              fontWeight: "900",
+              // flex: 1,
+              fontFamily: "Marvel",
+              cursor: "pointer",
+            }}
+          >
+            DOWNLOAD YOUR COMIC
+          </button>
         </div>
       </div>
-        <img src={require('./Assets/Hero.jpg')} alt=""  style={{display:"none"}} className="hero"/>
+      <img
+        src={require("./Assets/Hero.jpg")}
+        alt=""
+        style={{ display: "none" }}
+        className="hero"
+      />
     </div>
   );
 }
